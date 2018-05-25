@@ -15,7 +15,6 @@ echo "Releasing version to ${VERSION}"
 export PUSH="true"
 $(dirname $0)/build-images.sh
 
-docker build -t docker.io/$ORG/$APP_NAME:${VERSION} .
 docker tag docker.io/$ORG/$APP_NAME:${VERSION} docker.io/$ORG/$APP_NAME:latest
 
 docker push docker.io/$ORG/$APP_NAME:${VERSION}

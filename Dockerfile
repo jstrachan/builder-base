@@ -6,6 +6,7 @@ RUN yum install -y epel-release && \
   make \
   wget \
   zip \
+  bzip2 \
   python-pip
 
 RUN pip install anchorecli 
@@ -40,6 +41,11 @@ RUN curl https://storage.googleapis.com/kubernetes-helm/helm-v${HELM_VERSION}-li
   mv linux-amd64/helm /usr/bin/ && \
   rm -rf linux-amd64
 
+# helm3
+RUN curl https://storage.googleapis.com/kubernetes-helm/helm-dev-v3-linux-amd64.tar.gz | tar xzv && \
+  mv linux-amd64/helm /usr/bin/helm3 && \
+  rm -rf linux-amd64
+
 # gcloud
 ENV GCLOUD_VERSION 187.0.0
 RUN curl -L https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${GCLOUD_VERSION}-linux-x86_64.tar.gz | tar xzv && \
@@ -49,7 +55,7 @@ ENV PATH=$PATH:/usr/bin/google-cloud-sdk/bin
 # jx-release-version
 ENV JX_RELEASE_VERSION 1.0.9
 RUN curl -o ./jx-release-version -L https://github.com/jenkins-x/jx-release-version/releases/download/v${JX_RELEASE_VERSION}/jx-release-version-linux && \
-  mv jx-release-version /usr/bin/ && \
+  mv jx-reelease-version /usr/bin/ && \
   chmod +x /usr/bin/jx-release-version
 
 # exposecontroller

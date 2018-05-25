@@ -18,6 +18,7 @@ echo "" >> Dockerfile
 cat Dockerfile.yum >> Dockerfile
 cat Dockerfile.common >> Dockerfile
 
+docker build -t docker.io/jenkinsxio/builder-base:${VERSION} -f Dockerfile .
 
 for name in "${!images[@]}"
 do

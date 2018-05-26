@@ -64,11 +64,11 @@ docker build -t docker.io/jenkinsxio/builder-$name:${VERSION} -f Dockerfile.$nam
 
 if [ "$PUSH" = "true" ]; then
   echo "Pushing the docker image"
-  docker push docker.io/jenkinsxio/builder-$name:${VERSION}
+  docker push docker.io/jenkinsxio/builder-base:${VERSION}
 
   if [ "$PUSH_LATEST" = "true" ]; then
-    docker tag docker.io/jenkinsxio/builder-$name:${VERSION} docker.io/jenkinsxio/builder-$name:latest
-    docker push docker.io/jenkinsxio/builder-$name:latest
+    docker tag docker.io/jenkinsxio/builder-base:${VERSION} docker.io/jenkinsxio/builder-base:latest
+    docker push docker.io/jenkinsxio/builder-base:latest
   else
     echo "Not pushing the latest docker image as PUSH_LATEST=$PUSH_LATEST"
   fi
